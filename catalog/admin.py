@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.contrib.admin import ModelAdmin
+#from django.contrib.admin import ModelAdmin
 
 from catalog.models import Author,Genre,Book,Language,BookInstance
 
@@ -14,11 +14,11 @@ admin.site.register(BookInstance)
 
 #admin.site.register(Author,AuthorAdmin)
 
-@admin.register(Book)
-class BookAdmin(admin.ModelAdmin):
-    pass
-@admin.register(BookInstance)
-class BookInstanceAdmin(admin.ModelAdmin):
-    pass
+#@admin.register(Book)
+#class BookAdmin(admin.ModelAdmin):
+    #pass
+#@admin.register(BookInstance)
+#class BookInstanceAdmin(admin.ModelAdmin):
+    #pass
 
 
