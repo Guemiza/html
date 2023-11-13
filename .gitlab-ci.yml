@@ -1,0 +1,30 @@
+stages:
+  - test
+  - deploy
+
+variables:
+  PYTHON_IMAGE: "python:3.8"
+  DOCKER_IMAGE: "registry.example.com/your-docker-image:latest"  # Remplacez par votre image Docker
+
+test:
+  stage: test
+  image: $PYTHON_IMAGE
+  script:
+    - apt-get update -qy
+    - apt-get install -y python3-dev libpq-dev  # Dépendances pour psycopg2 (adaptées à un projet Django)
+    - pip install -r requirements.txt
+    - python3 manage.py test
+
+deploy:
+  stage: deploy
+  only:
+    - dockerfile  # Déployer uniquement à partir de la branche master
+  script:
+    - apt-get update -qy
+    - apt-get install -y python3-dev libpq-dev  # Dépendances pour psycopg2 (adaptées à un projet Django)
+    - pip install -r requirements.txt
+    - python manage.py migrate
+    - python manage.py collectstatic --noinput
+    - docker build -t Myapp-django:v1 .  # Construire l'image Docker
+    - docker push Myapp-django:v1  # Pousser l'image vers votre registre Docker
+    - echo "Déploiement sur le serveur de production"  # Ajoutez vos commandes de déploiement ici
