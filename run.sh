@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker run -it -p 80:80 amel:v1 
+docker run -it -p 8000:8000 project-liberay:v1

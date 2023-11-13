@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Votre commande de construction Docker
-docker build -t amel:v1 .
+docker build -t project-liberay:v1 .
 
 # Vérifier si la construction a réussi (vérification du code de sortie)
 if [ $? -eq 0 ]; then
