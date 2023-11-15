@@ -9,21 +9,17 @@ test:
   stage: test
   image: $PYTHON_IMAGE
   script:
- 
+    - apt-get update 
     - pip install -r requirements.txt
     - python3 manage.py test
 
 deploy:
   stage: deploy
   script:
-
+    - apt-get update 
     - pip install -r requirements.txt
     - python3 manage.py migrate
-    # Ajoutez d'autres commandes de déploiement si nécessaire
-
-# Ajoutez cette section pour spécifier la version de l'action checkout
-# Assurez-vous de consulter la documentation pour la dernière version disponible.
-# https://github.com/actions/checkout/releases
+    # Ajoutez d'autres commandes de déploiement si nécessaires
 checkout_code:
   stage: test
   script:
