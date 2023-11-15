@@ -16,7 +16,7 @@ test:
 deploy:
   stage: deploy
   script:
-    - apt-get update -qy
+    #- apt-get update -qy
     - pip install -r requirements.txt
     - python3 manage.py migrate
     # Ajoutez d'autres commandes de déploiement si nécessaire
