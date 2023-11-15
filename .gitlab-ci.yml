@@ -9,14 +9,14 @@ test:
   stage: test
   image: $PYTHON_IMAGE
   script:
-    - apt-get update 
+ 
     - pip install -r requirements.txt
     - python3 manage.py test
 
 deploy:
   stage: deploy
   script:
-    - apt-get update 
+
     - pip install -r requirements.txt
     - python3 manage.py migrate
     # Ajoutez d'autres commandes de déploiement si nécessaire
