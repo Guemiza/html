@@ -4,18 +4,32 @@ stages:
 
 variables:
   PYTHON_IMAGE: "python:3.8"
+  NODE_VERSION: "16"  # Remplacez par la version de Node.js souhaitée
 
 test:
   stage: test
   image: $PYTHON_IMAGE
   script:
-    - apt-get update 
+    - apt-get update -qy
     - pip install -r requirements.txt
     - python3 manage.py test
-    
-    # Ajoutez d'autres commandes de déploiement si nécessaires
-checkout_code:
+
+deploy:
+  stage: deploy
+  script:
+    - apt-get update -qy
+    - apt-get install -y nodejs npm
+    - npm install -g n
+    - n $NODE_VERSION
+    - pip install -r requirements.txt
+    - python3 manage.py migrate
+    # Ajoutez d'autres commandes de déploiement si nécessaire
+
+# Ajoutez cette section pour spécifier la version de l'action setup-python
+setup_python:
   stage: test
   script:
-    - name: Checkout code
-      uses: actions/checkout@v2  # Spécifiez la version v2 de l'action checkout
+    - name: Set up Python
+      uses: actions/setup-python@v2.5.0  # Remplacez par la version souhaitée
+      with:
+        python-version: 3.8
