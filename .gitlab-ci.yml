@@ -9,7 +9,7 @@ test:
   stage: test
   image: $PYTHON_IMAGE
   script:
-    - apt-get update -qy
+    #- apt-get update -qy
     - pip install -r requirements.txt
     - python3 manage.py test
 
