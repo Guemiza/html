@@ -9,8 +9,23 @@ test:
   stage: test
   image: $PYTHON_IMAGE
   script:
-    - apt-get update -qy  # Mettre à jour les paquets sur l'image de base
+    - apt-get update -qy
     - pip install -r requirements.txt
     - python3 manage.py test
 
+deploy:
+  stage: deploy
+  script:
+    - apt-get update -qy
+    - pip install -r requirements.txt
+    - python3 manage.py migrate
+    # Ajoutez d'autres commandes de déploiement si nécessaire
 
+# Ajoutez cette section pour spécifier la version de l'action checkout
+# Assurez-vous de consulter la documentation pour la dernière version disponible.
+# https://github.com/actions/checkout/releases
+checkout_code:
+  stage: test
+  script:
+    - name: Checkout code
+      uses: actions/checkout@v2  # Spécifiez la version v2 de l'action checkout
