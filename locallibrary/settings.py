@@ -27,7 +27,8 @@ SECRET_KEY = 'django-insecure-x=j49tg0*sta68l76%22-_#jam*84s%%2_ct0#f9rsslltqj5m
 DEBUG = True
 
 ALLOWED_HOSTS = ['*', 'mon-app.local', 'localhost']
-
+# email adress 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 # Application definition
