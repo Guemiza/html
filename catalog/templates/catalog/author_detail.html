@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>book_detail</title>
+</head>
+<body>
+
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>nom : {{ author.first_name }}</h1>
+
+  <p><strong>nom:</strong> {{author.first_name }}</p> <!-- author detail link not yet defined -->
+  <p><strong>prenom:</strong> {{ author.last_name }}</p>
+  <p><strong>date naissance:</strong> {{ author.date_of_birth }}</p>
+  <p><strong>date deces:</strong> {{ author.date_of_death }}</p>
+
+  {% endblock %}
+
+
+</body>
+</html>
