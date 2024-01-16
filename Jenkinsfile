@@ -3,7 +3,7 @@ pipeline {
 
     triggers {
         // Déclencheur pour un changement dans le référentiel Git toutes les 5 minutes
-        pollSCM('H/1 * * * *')
+        pollSCM('H/5 * * * *')
     }
 
     environment {
@@ -29,16 +29,15 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script {
-                    docker.image("${DOCKER_IMAGE}").run("--rm -t", "python3", "manage.py", "test")
+                    docker.image("${DOCKER_IMAGE}").run('--rm -t python3 manage.py test')
+                }
+            }
         }
-    }
-}
-
 
         stage('Deploy') {
             steps {
                 script {
-                    docker-compose up -d
+                    // docker-compose up -d
                     kubectl apply -f k8s-deployment.yaml
                 }
             }
