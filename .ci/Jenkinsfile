@@ -1,4 +1,4 @@
-[200~pipeline {
+pipeline {
     agent any
 
     environment {
@@ -16,7 +16,7 @@
             steps {
                 script {
                     // Vous pouvez sauter cette étape si votre image est déjà construite
-                    docker.build()
+                    docker.build("${DOCKER_IMAGE}")
                 }
             }
         }
@@ -24,7 +24,7 @@
         stage('Run Tests') {
             steps {
                 script {
-                    docker.image().run('--rm -t python manage.py test')
+                    docker.image("${DOCKER_IMAGE}").run('--rm -t python manage.py test')
                 }
             }
         }
@@ -44,8 +44,8 @@
         always {
             script {
                 // Nettoyez après vous, par exemple, arrêtez et supprimez les conteneurs temporaires
-                docker.image().stop()
-                docker.image().remove()
+                docker.image("${DOCKER_IMAGE}").stop()
+                docker.image("${DOCKER_IMAGE}").remove()
             }
         }
     }
