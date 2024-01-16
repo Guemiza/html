@@ -29,10 +29,11 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script {
-                    docker.image("${DOCKER_IMAGE}").run('--rm -t python3 manage.py test')
-                }
-            }
+                    docker.image("${DOCKER_IMAGE}").run("--rm -t", "python3", "manage.py", "test")
         }
+    }
+}
+
 
         stage('Deploy') {
             steps {
