@@ -3,7 +3,7 @@ pipeline {
 
     triggers {
         // Déclencheur pour un changement dans le référentiel Git toutes les 5 minutes
-        pollSCM('H/5 * * * *')
+        pollSCM('H/1 * * * *')
     }
 
     environment {
