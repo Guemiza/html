@@ -32,9 +32,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // Ajoutez vos étapes de déploiement ici, par exemple :
                     // docker-compose up -d
-                    // ou kubectl apply -f k8s-deployment.yaml
+                    kubectl apply -f k8s-deployment.yaml
                 }
             }
         }
