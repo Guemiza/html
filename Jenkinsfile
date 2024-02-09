@@ -20,7 +20,13 @@ pipeline {
         stage('Run Ansible Playbook') {
             steps {
                 script {
-                    sh "ansible-playbook -i ${INVENTORY_FILE} ${ANSIBLE_PLAYBOOK}"
+                    def ansiblePlaybookPath = "${WORKSPACE}/path/vers/votre/ansible.yml"
+                    def inventoryFilePath = "${WORKSPACE}/path/vers/votre/inventory.ini"
+
+                    // Appeler Ansible pour le déploiement
+                    sh """
+                        ansible-playbook -i ${inventoryFilePath} ${ansiblePlaybookPath}
+                    """
                 }
             }
         }
