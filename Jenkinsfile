@@ -6,8 +6,8 @@ pipeline {
     }
 
     environment {
-        ANSIBLE_PLAYBOOK = '/home/devops/BureauFiles/DjangoProject-Admin/locallibrary/ansible.yml'
-        INVENTORY_FILE = '/home/devops/BureauFiles/DjangoProject-Admin/locallibrary/inventory.ini'  // Correction ici
+        ANSIBLE_PLAYBOOK = 'BureauFiles/DjangoProject-Admin/locallibrary/ansible.yml'
+        INVENTORY_FILE = 'BureauFiles/DjangoProject-Admin/locallibrary/inventory.ini'  // Correction ici
     }
 
     stages {
@@ -20,13 +20,7 @@ pipeline {
         stage('Run Ansible Playbook') {
             steps {
                 script {
-                    def ansiblePlaybookPath = "${WORKSPACE}/path/vers/votre/ansible.yml"
-                    def inventoryFilePath = "${WORKSPACE}/path/vers/votre/inventory.ini"
-
-                    // Appeler Ansible pour le déploiement
-                    sh """
-                        ansible-playbook -i ${inventoryFilePath} ${ansiblePlaybookPath}
-                    """
+                    sh "ansible-playbook -i ${INVENTORY_FILE} ${ANSIBLE_PLAYBOOK}"
                 }
             }
         }
