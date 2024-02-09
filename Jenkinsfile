@@ -6,8 +6,8 @@ pipeline {
     }
 
     environment {
-        ANSIBLE_PLAYBOOK = 'BureauFiles/DjangoProject-Admin/locallibrary/ansible.yml'
-        INVENTORY_FILE = 'BureauFiles/DjangoProject-Admin/locallibrary/inventory.ini'  // Correction ici
+        ANSIBLE_PLAYBOOK = 'ansible.yml'
+        INVENTORY_FILE = 'inventory.ini'  // Correction ici
     }
 
     stages {
