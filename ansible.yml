@@ -1,0 +1,21 @@
+---
+- collections:
+    - kubernetes.core
+
+  hosts: my_remote_host
+  become: yes
+  gather_facts: no
+
+  vars:
+    ansible_ssh_private_key_file: "/home/devops/.ssh/id_rsa"
+    docker_image: "amelgm/project-adminlocallibrary:v2"
+    ansible_python_interpreter: "/usr/bin/python3"
+    kubeconfig: "/home/devops/.kube/config"
+
+  tasks:
+    - name: Deploy Django application to Kubernetes
+      k8s:
+        state: present
+        definition: "{{ lookup('template', 'k8s-deployment.yml.j2') }}"
+        kubeconfig: "{{ kubeconfig }}"
+
