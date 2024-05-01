@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-django
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-django
+  template:
+    metadata:
+      labels:
+        app: app-django
+    spec:
+      containers:
+      - name: app-django
+        image: amelgm/project-adminlocallibrary:v2
+
+        ports:
+        - containerPort: 8000
+
+

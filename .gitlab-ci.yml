@@ -1,0 +1,23 @@
+test:
+  stage: test
+  image: $PYTHON_IMAGE
+  script:
+    - apt-get update -qy
+    - pip install -r requirements.txt
+    - python3 manage.py test
+
+deploy:
+  stage: deploy
+  script:
+    - apt-get update -qy
+    - apt-get install -y nodejs npm
+    - npm install -g n
+    - n $NODE_VERSION
+    - pip install -r requirements.txt
+    - python3 manage.py migrate
+    # Add other deployment commands if necessary
+
+# Update the version to the latest release
+Checkout code:
+  stage: test
+  uses: actions/checkout@v2.5.0

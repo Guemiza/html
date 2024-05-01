@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  myapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    command: bash -c "python3 manage.py runserver 0.0.0.0:8000 --noreload --nothreading > /dev/null 2>&1"
+
