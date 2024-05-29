@@ -1,35 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-django
+  name: app-test
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app-django
+      app: app-test
   template:
     metadata:
       labels:
-        app: app-django
+        app: app-test
     spec:
       containers:
-      - name: app-django
-        image: amelgm/project-adminlocallibrary:v2
+      - name: app-test
+        image: amelgm/appdjango:v2
         ports:
         - containerPort: 8000
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: app-django-service
+  name: app-test-service
   namespace: default  # Assurez-vous que le namespace est correctement spécifié ici
 spec:
   selector:
-    app: app-django
+    app: app-test
   ports:
     - protocol: TCP
       port: 80
       targetPort: 8000
   type: NodePort
+
 

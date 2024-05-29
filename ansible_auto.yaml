@@ -1,0 +1,29 @@
+
+- name: Appliquer le fichier de déploiement Kubernetes
+
+  hosts: minikube-ip
+
+- name: lancer minikube
+
+  tasks:
+    - name: Exécuter la commande kubectl get pods
+      command: minikube start 
+
+- name: Obtenir l'état des pods
+
+  tasks:
+    - name: Exécuter la commande kubectl get pods
+      command: kubectl get pods
+
+- name: Obtenir l'état des services
+
+  tasks:
+    - name: Exécuter la commande kubectl get service
+      command: kubectl get service
+
+- name: Obtenir l'état des namespaces
+
+  tasks:
+    - name: Exécuter la commande kubectl get namespace
+      command: kubectl get namespace
+
