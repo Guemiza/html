@@ -1,4 +1,4 @@
-name: Super-Linter
+name: Super-Linter with Prettier
 
 on: push
 
@@ -10,8 +10,30 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Run Super-Linter
+      - name: Install Node.js and npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install Prettier
+        run: npm install --global prettier
+
+      - name: Run Prettier
+        run: prettier --write .
+
+      - name: Run Super-Linter with Prettier
         uses: github/super-linter@v4
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_ALL_CODEBASE: "false" # Optionnel: si vous voulez valider tout le code
+          VALIDATE_HTML: "true"          # Activer la validation HTML
+          VALIDATE_JAVASCRIPT: "true"    # Activer la validation JavaScript
+          VALIDATE_PYTHON: "true"        # Activer la validation Python
+          RUN_PYLINT: "false"            # Désactiver Pylint si vous utilisez Prettier pour Python
+          RUN_ESLINT: "false"            # Désactiver ESLint si vous utilisez Prettier pour JavaScript
+          RUN_TSLINT: "false"            # Désactiver TSLint si vous utilisez Prettier pour TypeScript
+          RUN_BLACK: "false"             # Désactiver Black si vous utilisez Prettier pour Python
+          RUN_XMLLINT: "false"           # Désactiver XMLLint si vous n'avez pas besoin de valider XML
+          RUN_YAMLLINT: "false"          # Désactiver Yamllint si vous n'avez pas besoin de valider YAML
+
