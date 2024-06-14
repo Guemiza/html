@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('catalog', '0004_rename_uniqueid_bookinstance_id'),
+        ("catalog", "0004_rename_uniqueid_bookinstance_id"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='bookinstance',
-            name='imprint',
-            field=models.CharField(default='0', max_length=200),
+            model_name="bookinstance",
+            name="imprint",
+            field=models.CharField(default="0", max_length=200),
         ),
     ]

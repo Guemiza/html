@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('catalog', '0002_bookinstance_status'),
+        ("catalog", "0002_bookinstance_status"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='author',
-            old_name='name',
-            new_name='last_name',
+            model_name="author",
+            old_name="name",
+            new_name="last_name",
         ),
         migrations.AddField(
-            model_name='author',
-            name='first_name',
-            field=models.CharField(default='', max_length=100),
+            model_name="author",
+            name="first_name",
+            field=models.CharField(default="", max_length=100),
         ),
     ]
